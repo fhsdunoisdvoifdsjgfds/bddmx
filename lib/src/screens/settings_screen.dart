@@ -107,7 +107,7 @@ class _Divider extends StatelessWidget {
     return Container(
       height: 0.5,
       margin: EdgeInsets.symmetric(horizontal: 30),
-      color: Colors.white.withValues(alpha: 0.3),
+      color: Colors.white,
     );
   }
 }
