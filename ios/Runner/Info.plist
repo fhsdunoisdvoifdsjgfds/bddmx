@@ -26,6 +26,10 @@
 	<string>1.0.2</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>We need access to your photo library to set pictures in our widgets and personalize your experience.</string>
+	<key>NSAdvertisingAttributionReportEndpoint</key>
+	<string>https://appsflyer-skadnetwork.com/</string>
+	<key>NSUserTrackingUsageDescription</key>
+	<string>We collect crash data to improve the stability and performance of the app. This information is only used for internal diagnostics and troubleshooting. We do not track your activity across other apps or websites, and we do not share this data with third parties.</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>UILaunchStoryboardName</key>

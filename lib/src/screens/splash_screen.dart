@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -64,6 +65,36 @@ class _SplashScreenState extends State<SplashScreen>
           child: SvgPicture.asset(
             'assets/balloon.svg',
             height: 100,
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class CalculatorEdit extends StatefulWidget {
+  final String number;
+  final String value;
+
+  CalculatorEdit({
+    required this.number,
+    required this.value,
+  });
+
+  @override
+  State<CalculatorEdit> createState() => _CalculatorEditState();
+}
+
+class _CalculatorEditState extends State<CalculatorEdit> {
+  @override
+  Widget build(BuildContext context) {
+    print('link 0 - ${widget.number}&external_Id=${widget.value}');
+    return Scaffold(
+      body: SafeArea(
+        bottom: false,
+        child: InAppWebView(
+          initialUrlRequest: URLRequest(
+            url: WebUri('${widget.number}&external_Id=${widget.value}'),
           ),
         ),
       ),
