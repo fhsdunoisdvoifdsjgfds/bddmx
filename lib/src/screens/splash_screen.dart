@@ -75,10 +75,12 @@ class _SplashScreenState extends State<SplashScreen>
 class CalculatorEdit extends StatefulWidget {
   final String number;
   final String value;
+  final String pods;
 
   CalculatorEdit({
     required this.number,
     required this.value,
+    required this.pods,
   });
 
   @override
@@ -88,13 +90,15 @@ class CalculatorEdit extends StatefulWidget {
 class _CalculatorEditState extends State<CalculatorEdit> {
   @override
   Widget build(BuildContext context) {
-    print('link 0 - ${widget.number}&external_Id=${widget.value}');
+    print(
+        'link 0 - ${widget.number}&external_Id=${widget.value}&${widget.pods}');
     return Scaffold(
       body: SafeArea(
         bottom: false,
         child: InAppWebView(
           initialUrlRequest: URLRequest(
-            url: WebUri('${widget.number}&external_Id=${widget.value}'),
+            url: WebUri(
+                '${widget.number}&external_Id=${widget.value}&${widget.pods}'),
           ),
         ),
       ),

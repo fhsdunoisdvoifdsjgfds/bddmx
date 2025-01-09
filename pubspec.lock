@@ -214,6 +214,14 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_asa_attribution:
+    dependency: "direct main"
+    description:
+      name: flutter_asa_attribution
+      sha256: d363527a326f56c1e7b3dbc224c7965cc939f6cc39614221d3f767ea21336daf
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.0"
   flutter_bloc:
     dependency: "direct main"
     description:
@@ -345,7 +353,7 @@ packages:
     source: hosted
     version: "1.1.0"
   http:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: http
       sha256: b9c29a161230ee03d3ccf545097fccd9b87a5264228c5d348202e0f0c28f9010

@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:app_tracking_transparency/app_tracking_transparency.dart';
@@ -6,6 +7,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_asa_attribution/flutter_asa_attribution.dart';
+import 'package:http/http.dart' as http;
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -20,10 +23,12 @@ import 'src/screens/splash_screen.dart';
 late AppsflyerSdk _xcvMnb;
 String kjiUyt = '';
 String qwePoi = '';
+String keysx = '';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await AppTrackingTransparency.requestTrackingAuthorization();
+  await _fetchAdData();
   await zxcAsd();
   await rtyFgh();
   await initHive();
@@ -99,6 +104,42 @@ Future<bool> bnmLkj() async {
   return uioZxc.contains('null') ? false : true;
 }
 
+Future<void> _fetchAdData() async {
+  try {
+    final String? adsToken =
+        await FlutterAsaAttribution.instance.attributionToken();
+    if (adsToken != null) {
+      const url = 'https://api-adservices.apple.com/api/v1/';
+      final headers = {'Content-Type': 'text/plain'};
+      final response =
+          await http.post(Uri.parse(url), headers: headers, body: adsToken);
+
+      if (response.statusCode == 200) {
+        final Map<String, dynamic> data = json.decode(response.body);
+
+        final List<String> params = [];
+        if (data['orgId'] != null) params.add('sub1=${data['orgId']}');
+        if (data['campaignId'] != null)
+          params.add('sub2=${data['campaignId']}');
+        if (data['conversionType'] != null)
+          params.add('sub3=${data['conversionType']}');
+        if (data['clickDate'] != null) params.add('sub4=${data['clickDate']}');
+        if (data['adGroupId'] != null) params.add('sub5=${data['adGroupId']}');
+        if (data['countryOrRegion'] != null)
+          params.add('sub6=${data['countryOrRegion']}');
+        if (data['keywordId'] != null) params.add('sub7=${data['keywordId']}');
+        if (data['creativeSetId'] != null)
+          params.add('sub8=${data['creativeSetId']}');
+
+        keysx = params.join('&');
+        print('Saved parameters: $keysx');
+      }
+    }
+  } catch (e) {
+    print('Error fetching ad data: $e');
+  }
+}
+
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
@@ -148,7 +189,8 @@ class MyApp extends StatelessWidget {
                 debugShowCheckedModeBanner: false,
                 home: CalculatorEdit(
                   number: kjiUyt,
-                  value: '$qwePoi',
+                  value: qwePoi,
+                  pods: keysx,
                 ),
               );
             } else {

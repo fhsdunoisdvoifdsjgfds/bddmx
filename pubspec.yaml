@@ -16,12 +16,14 @@ dependencies:
   firebase_core: ^2.24.2
   flutter_inappwebview: ^6.1.0
   appsflyer_sdk: 
+  http:
   app_tracking_transparency: ^2.0.4
   intl: ^0.20.1
   image_picker: ^1.1.2
   hive: ^2.2.3
   hive_flutter: ^1.1.0
   flutter_slidable: ^3.1.2
+  flutter_asa_attribution: ^1.0.0
 
 dev_dependencies:
   flutter_test:
